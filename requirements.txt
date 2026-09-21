@@ -1,0 +1,7 @@
+mistralai>=2.10
+qdrant-client>=1.18
+gradio>=6.18
+reportlab>=4.5
+pandas>=2.3
+numpy>=2.3
+python-dotenv>=1.2
