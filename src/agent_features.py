@@ -1,23 +1,18 @@
-from base_agent import get_embedding, text_vectors, format_context, client
+"""Агент «Пожелания»: вытаскивает просьбы клиентов улучшить продукт."""
 
-chat_model = "mistral-small-2506"
+from __future__ import annotations
 
+from base_agent import run_agent
 
-def analyze(question):
-    hits = text_vectors(question)
-    context = format_context(hits)
-
-    response = client.chat.complete(
-        model="mistral-small-2506",
-        messages=[
-            {"role": "system", "content": """Ты продакт-менеджер. Находи явные и неявные просьбы клиентов улучшить функции, сгруппируй по темам, укажи сколько встречается каждая, не выдумывай. Отвечай на русском. ВАЖНО: Используй ТОЛЬКО данные из предоставленных тикетов.
+SYSTEM_PROMPT = """Ты продакт-менеджер. Находи явные и неявные просьбы клиентов улучшить функции, сгруппируй по темам, укажи сколько встречается каждая, не выдумывай. Отвечай на русском.
+ВАЖНО: Используй ТОЛЬКО данные из предоставленных тикетов.
 Если цифры или факты не встречаются в тикетах — не упоминай их.
-Всегда указывай номер тикета как источник: (Тикет 3), (Тикеты 1, 5, 12)."""},
-            {"role": "user", "content": f"Вопрос: {question}\n\nТикеты:\n{context}"}
-        ],
-    )
-    
-    return response.choices[0].message.content
+Всегда указывай номер тикета как источник: (Тикет 3), (Тикеты 1, 5, 12)."""
+
+
+def analyze(question: str) -> str:
+    return run_agent(SYSTEM_PROMPT, question, name="агент «Пожелания»")
+
 
 if __name__ == "__main__":
     print(analyze("Что клиенты просят улучшить или добавить?"))

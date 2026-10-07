@@ -1,0 +1,29 @@
+[project]
+name = "support-intelligence"
+version = "0.2.0"
+description = "Мультиагентная RAG-система для анализа тикетов поддержки"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["F", "E", "W", "I", "B", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+# Системные промпты агентов - длинные строки, переносить их нельзя без изменения смысла.
+"src/agent_analyst.py" = ["E501"]
+"src/agent_features.py" = ["E501"]
+"src/agent_sentiment.py" = ["E501"]
+"src/base_agent.py" = ["E501"]
+# Ранние черновики оставлены как есть, для истории.
+"experiments/*" = ["ALL"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"

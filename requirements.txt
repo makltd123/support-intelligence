@@ -1,7 +1,9 @@
-mistralai>=2.10
-qdrant-client>=1.18
-gradio>=6.18
-reportlab>=4.5
-pandas>=2.3
-numpy>=2.3
-python-dotenv>=1.2
+# Верхние границы закрывают мажорные версии: без них pip ставит ещё не вышедшие
+# релизы с ломающими изменениями. Версии ниже проверены на Python 3.11-3.13.
+mistralai>=2.10,<4
+qdrant-client>=1.18,<2
+gradio>=6.18,<7
+reportlab>=4.5,<6
+pandas>=2.3,<4
+numpy>=2.3,<3
+python-dotenv>=1.2,<2

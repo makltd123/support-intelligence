@@ -1,7 +1,10 @@
 .env
+.venv/
 __pycache__/
 *.py[cod]
-.venv/
+.pytest_cache/
+.ruff_cache/
 data/
 /report.pdf
 /test_report.pdf
+/demo_report.pdf
