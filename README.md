@@ -87,3 +87,7 @@ python src/agent_synthesizer.py # or straight to report.pdf for the question set
 ## License
 
 [MIT](LICENSE)
+
+---
+
+Author: [Fedor Makovskiy](https://fedor.alqira.ru), AI developer. Services and projects with quality metrics: [fedor.alqira.ru](https://fedor.alqira.ru).
